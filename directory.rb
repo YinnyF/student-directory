@@ -23,13 +23,12 @@ def print_header
 end
 
 def print(students) # students is an array of hashes
-  puts "Please enter the students first initial that you want to print"
-  first_initial = gets.chomp.upcase
   students.each_with_index() do |student, index| # student is a hash
-    if student[:name][0] == first_initial
+    if student[:name].length < 12
       puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
+  puts "Students whose name is longer than or equal to 12 chars are not printed"
 end
 
 def print_footer(students)
