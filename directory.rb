@@ -34,10 +34,19 @@ def print_header
 end
 
 def print(students) # students is an array of hashes
-  i = 0 
-  while i < students.length
-    puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(35)
-    i += 1
+  grouped_by_cohort = Hash.new # a hash of hashes grouped by cohort.
+
+  students.each do |student| 
+    if grouped_by_cohort[ student[:cohort] ] == nil 
+      grouped_by_cohort[ student[:cohort] ] = []
+    end
+    grouped_by_cohort[ student[:cohort] ].push( student[:name] )
+  end
+  
+  grouped_by_cohort.each do |cohort, name|
+    puts "#{cohort} cohort".center(35)
+    puts name
+    puts "\n"
   end
 end
 
