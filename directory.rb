@@ -28,8 +28,8 @@ def print(students) # students is an array of hashes
   end
 end
 
-def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+def print_footer(students)
+  puts "Overall, we have #{students.count} great students"
 end
 
 # nothing happens until we call the methods
