@@ -18,20 +18,20 @@ def input_students
 end
 
 def print_header
-  puts "The students of Villains Academy"
-  puts "-------------"
+  puts "The students of Villains Academy".center(35)
+  puts "-------------".center(35)
 end
 
 def print(students) # students is an array of hashes
   i = 0 
   while i < students.length
-    puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)"
+    puts "#{i + 1}. #{students[i][:name]} (#{students[i][:cohort]} cohort)".center(35)
     i += 1
   end
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students"
+  puts "Overall, we have #{students.count} great students".center(35)
 end
 
 # nothing happens until we call the methods
