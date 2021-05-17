@@ -23,8 +23,8 @@ def print_header
 end
 
 def print(students) # students is an array of hashes
-  students.each do |student| # student is a hash
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  students.each_with_index() do |student, index| # student is a hash
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 
