@@ -34,12 +34,17 @@ def input_students
   students
 end
 
-def print_header
+def print_header(students)
+  return nil if students.count == 0
   puts "The students of Villains Academy".center(35)
   puts "-------------".center(35)
 end
 
 def print(students) # students is an array of hashes
+  if students.count == 0
+    puts "nothing to show you here".center(35)
+    return
+  end
   grouped_by_cohort = Hash.new # a hash of hashes grouped by cohort.
 
   students.each do |student| 
@@ -57,11 +62,17 @@ def print(students) # students is an array of hashes
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(35)
+  if students.count == 0
+    return nil
+  elsif students.count == 1
+    puts "Overall, we have #{students.count} great student".center(35)
+  else
+    puts "Overall, we have #{students.count} great students".center(35)
+  end
 end
 
 # nothing happens until we call the methods
 students = input_students
-print_header
+print_header(students)
 print(students)
 print_footer(students)
