@@ -20,7 +20,13 @@ def input_students
     
     # add the student hash to the array
     students << {name: name, cohort: cohort}
-    puts "Now we have #{students.count} students"
+    
+    # fix the grammar
+    if students.count == 1
+      puts "Now we have 1 student"
+    else
+      puts "Now we have #{students.count} students"
+    end
     # get another name from the user
     name = gets.chomp
   end
