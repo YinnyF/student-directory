@@ -7,8 +7,19 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
+    puts "please enter the cohort"
+    # convert their input to symbol
+    cohort = gets.chomp.downcase.to_sym
+    # default to :november if nothing is etnered
+    cohort = :november if cohort.empty?
+    # verify the correct info was given for cohort
+    puts "student #{name} will be added to #{cohort} cohort, is this correct? Y/N"
+    changes = gets.chomp.upcase
+    # start from next loop if wrong info was given
+    next if changes =="N" 
+    
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {name: name, cohort: cohort}
     puts "Now we have #{students.count} students"
     # get another name from the user
     name = gets.chomp
