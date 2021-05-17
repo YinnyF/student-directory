@@ -24,11 +24,8 @@ end
 
 def print(students) # students is an array of hashes
   students.each_with_index() do |student, index| # student is a hash
-    if student[:name].length < 12
-      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
   end
-  puts "Students whose name is longer than or equal to 12 chars are not printed"
 end
 
 def print_footer(students)
