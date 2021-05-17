@@ -4,17 +4,17 @@ def input_students
   # create an empty array
   students = []
   # get the first name
-  name = gets.chomp
+  name = gets.strip
   # while the name is not empty, repeat this code
   while !name.empty? do
     puts "please enter the cohort"
     # convert their input to symbol
-    cohort = gets.chomp.downcase.to_sym
+    cohort = gets.strip.downcase.to_sym
     # default to :november if nothing is etnered
     cohort = :november if cohort.empty?
     # verify the correct info was given for cohort
     puts "student #{name} will be added to #{cohort} cohort, is this correct? Y/N"
-    changes = gets.chomp.upcase
+    changes = gets.strip.upcase
     # start from next loop if wrong info was given
     next if changes =="N" 
     
@@ -28,7 +28,7 @@ def input_students
       puts "Now we have #{students.count} students"
     end
     # get another name from the user
-    name = gets.chomp
+    name = gets.strip
   end
   # return the array of students
   students
