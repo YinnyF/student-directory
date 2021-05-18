@@ -86,8 +86,8 @@ def print_menu
   puts_title("Menu")
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the student list to .csv"
+  puts "4. Load the student list from a .csv"
   puts "9. Exit"
 end
 
@@ -108,13 +108,11 @@ def process(selection)
       sleep(2)
       show_students
     when "3"
-      save_students
-      puts "List of students was saved in students.csv"
-      sleep(2)
+      puts "What filename would you like to save as? Please type the .csv extension as well."
+      save_students(STDIN.gets.chomp)
     when "4"
-      load_students
-      puts "List of students was loaded"
-      sleep(2)
+      puts "What filename would you like to load? Please type the .csv extenstion as well."
+      load_students(STDIN.gets.chomp)
     when "9"
       puts "Bye!"
       sleep(2)
@@ -134,9 +132,16 @@ def interactive_menu
   end
 end
 
-def save_students
-  # opeb the file for writing
-  file = File.open("students.csv", "w")
+def save_students(filename)
+  filename = "students.csv" if filename.empty? # default to students.csv if no filename given
+  # check the file type is correct
+  if filename[-4..-1]!=".csv"
+    puts "The filename is incorrect, now returning to menu. Please try again."
+    sleep(2)
+    return
+  end
+  # open the file for writing
+  file = File.open(filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]] # new array with student info
@@ -144,15 +149,24 @@ def save_students
     file.puts csv_line # write csv line to the file using puts, onto a file.
   end
   file.close # each time you open a file, it needs to be closed. 
+  puts "List of students was saved in #{filename}"
+  sleep(2)
 end
 
-def load_students(filename = "students.csv")
-  file = File.open(filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',') # parallel assignment - assigning two variables at the same time.
-      @students << {name: name, cohort: cohort.to_sym}
+def load_students(filename)
+  if File.exists?(filename)
+    file = File.open(filename, "r")
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(',') # parallel assignment - assigning two variables at the same time.
+        @students << {name: name, cohort: cohort.to_sym}
+    end
+    file.close
+    puts "List of students was loaded from #{filename}"
+    sleep(2)
+  else 
+    puts "The file does not exist, now returning to menu. Please try again."
+    sleep(2)
   end
-  file.close
 end
 
 def try_load_students
