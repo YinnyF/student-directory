@@ -141,26 +141,26 @@ def save_students(filename)
     return
   end
   # open the file for writing
-  file = File.open(filename, "w")
-  # iterate over the array of students
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]] # new array with student info
-    csv_line = student_data.join(",")
-    file.puts csv_line # write csv line to the file using puts, onto a file.
-  end
-  file.close # each time you open a file, it needs to be closed. 
+  File.open(filename, "w") do |file|
+    # iterate over the array of students
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]] # new array with student info
+      csv_line = student_data.join(",")
+      file.puts csv_line # write csv line to the file using puts, onto a file.
+    end
+  end # each time you open a file, it needs to be closed. 
   puts "List of students was saved in #{filename}"
   sleep(2)
 end
 
 def load_students(filename)
   if File.exists?(filename)
-    file = File.open(filename, "r")
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(',') # parallel assignment - assigning two variables at the same time.
-        @students << {name: name, cohort: cohort.to_sym}
-    end
-    file.close
+    File.open(filename, "r") do |file|
+      file.readlines.each do |line|
+        name, cohort = line.chomp.split(',') # parallel assignment - assigning two variables at the same time.
+          @students << {name: name, cohort: cohort.to_sym}
+      end
+    end # closes the file at the end of the block
     puts "List of students was loaded from #{filename}"
     sleep(2)
   else 
