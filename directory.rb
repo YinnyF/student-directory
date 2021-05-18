@@ -1,5 +1,12 @@
 @students = [] # an empty array accessible to all methods
 
+def puts_title(string)
+  puts "\n"
+  puts "-------------".center(35)
+  puts string.center(35)
+  puts "-------------".center(35) 
+end
+
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
@@ -35,8 +42,7 @@ end
 
 def print_header
   return nil if @students.count == 0
-  puts "The students of Villains Academy".center(35)
-  puts "-------------".center(35)
+  puts_title("The Students of Villains Academy")
 end
 
 def group_students # creates new array containing a hash with key (cohort) and values (student names)
@@ -77,6 +83,7 @@ def print_footer
 end
 
 def print_menu
+  puts_title("Menu")
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
@@ -93,17 +100,28 @@ end
 def process(selection)
   case selection
     when "1"
+      puts "You have selected to input the students..."
+      sleep(2)
       input_students
     when "2"
+      puts "Now showing the list of students..."
+      sleep(2)
       show_students
     when "3"
       save_students
+      puts "List of students was saved in students.csv"
+      sleep(2)
     when "4"
       load_students
+      puts "List of students was loaded"
+      sleep(2)
     when "9"
+      puts "Bye!"
+      sleep(2)
       exit # this will cause the program to terminate
     else
       puts "I don't know what you meant, try again"
+      sleep(2)
   end
 end
 
