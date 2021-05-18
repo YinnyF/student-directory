@@ -4,17 +4,17 @@ def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
   # get the first name
-  name = gets.strip
+  name = STDIN.gets.strip
   # while the name is not empty, repeat this code
   while !name.empty? do
     puts "please enter the cohort"
     # convert their input to symbol
-    cohort = gets.strip.downcase.to_sym
+    cohort = STDIN.gets.strip.downcase.to_sym
     # default to :november if nothing is etnered
     cohort = :november if cohort.empty?
     # verify the correct info was given for cohort
     puts "student #{name} will be added to #{cohort} cohort, is this correct? Y/N"
-    changes = gets.strip.upcase
+    changes = STDIN.gets.strip.upcase
     # start from next loop if wrong info was given
     next if changes =="N" 
     
@@ -28,7 +28,7 @@ def input_students
       puts "Now we have #{@students.count} students"
     end
     # get another name from the user
-    name = gets.strip
+    name = STDIN.gets.strip
   end
   # array of students doesnt need to be returned anymore.
 end
@@ -80,6 +80,7 @@ def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "3. Save the list to students.csv"
+  puts "4. Load the list from students.csv"
   puts "9. Exit"
 end
 
@@ -97,6 +98,8 @@ def process(selection)
       show_students
     when "3"
       save_students
+    when "4"
+      load_students
     when "9"
       exit # this will cause the program to terminate
     else
@@ -109,7 +112,7 @@ def interactive_menu
     # 1. print the menu and ask the user what to do
     print_menu
     # 2 + 3. get user input and do what the user has asked
-    process(gets.chomp)
+    process(STDIN.gets.chomp)
   end
 end
 
@@ -124,5 +127,28 @@ def save_students
   end
   file.close # each time you open a file, it needs to be closed. 
 end
+
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(',') # parallel assignment - assigning two variables at the same time.
+      @students << {name: name, cohort: cohort.to_sym}
+  end
+  file.close
+end
+
+def try_load_students
+  filename = ARGV.first # takes first argument from the command line
+  return if filename.nil? # get out of the method if it isn't given
+  if File.exists?(filename) # if the filename exists, a File class method
+    load_students(filename)
+    puts "Loaded #{@students.count} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist."
+    exit # quit the program
+  end
+end
+  
 # nothing happens until we call the methods
+try_load_students
 interactive_menu
