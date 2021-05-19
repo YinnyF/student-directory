@@ -23,11 +23,9 @@ def input_students
     # verify the correct info was given for cohort
     puts "student #{name} will be added to #{cohort} cohort, is this correct? Y/N"
     changes = STDIN.gets.strip.upcase
-    # start from next loop if wrong info was given
-    next if changes =="N" 
-    
     # add the student hash to the array
     @students << {name: name, cohort: cohort}
+    @students.pop if changes == "N" # remove the student from the hash if its not correct
     
     # fix the grammar
     if @students.count == 1
