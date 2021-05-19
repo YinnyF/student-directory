@@ -87,6 +87,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the student list to .csv"
   puts "4. Load the student list from a .csv"
+  puts "8. View my insides"
   puts "9. Exit"
 end
 
@@ -112,6 +113,8 @@ def process(selection)
     when "4"
       puts "What filename would you like to load? Please type the .csv extenstion as well."
       load_students(STDIN.gets.chomp)
+    when "8"
+      source_code
     when "9"
       puts "Bye!"
       sleep(2)
@@ -175,12 +178,15 @@ def try_load_students
     exit # quit the program
   end
 end
+
+def source_code
+  puts "----- This is the beginning of the source code -----".center(50)
+  puts File.read(__FILE__) 
+  puts "----- This is the end of the source code -----".center(50)
+  sleep(2)
+end
   
-mycode = File.read(__FILE__)  
-puts mycode
 
 # nothing happens until we call the methods
 try_load_students
 interactive_menu
-
-# This is the end of the code
