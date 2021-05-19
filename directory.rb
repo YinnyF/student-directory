@@ -176,6 +176,11 @@ def try_load_students
   end
 end
   
+mycode = File.read(__FILE__)  
+puts mycode
+
 # nothing happens until we call the methods
 try_load_students
 interactive_menu
+
+# This is the end of the code
