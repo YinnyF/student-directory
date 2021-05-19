@@ -20,11 +20,16 @@ def input_students
     cohort = STDIN.gets.strip.downcase.to_sym
     # default to :november if nothing is etnered
     cohort = :november if cohort.empty?
-    # verify the correct info was given for cohort
-    puts "student #{name} will be added to #{cohort} cohort, is this correct? Y/N"
+    # verify the correct info was given
+    # ask for the hobbies
+    puts "Please enter their hobbies"
+    hobby = STDIN.gets.strip.downcase
+    hobby = "none" if hobby.empty?
+    
+    puts "#{name} will be added to #{cohort} cohort with the hobbies #{hobby}, is this correct? Y/N"
     changes = STDIN.gets.strip.upcase
     # add the student hash to the array
-    @students << {name: name, cohort: cohort}
+    @students << {name: name, cohort: cohort, hobby: hobby}
     @students.pop if changes == "N" # remove the student from the hash if its not correct
     
     # fix the grammar
@@ -146,7 +151,7 @@ def save_students(filename)
   # use CSV library method called open to write to a file.
   CSV.open(filename, "wb") do |csv|
     # iterate over the array of students and append them to csv
-    @students.each { |student| csv << [student[:name], student[:cohort]] }  
+    @students.each { |student| csv << [student[:name], student[:cohort], student[:hobby]] }  
   end
   
   puts "List of students was saved in #{filename}"
@@ -157,8 +162,8 @@ def load_students(filename)
   if File.exists?(filename) # check that the file exists
     # open the file and generate the hashes using CSV library
     CSV.foreach(filename) do |line|
-      name, cohort = line # parallel assignment to name & cohort - line is an array of elements already separated.
-      @students << {name: name, cohort: cohort.to_sym}
+      name, cohort, hobby = line # parallel assignment to name & cohort - line is an array of elements already separated.
+      @students << {name: name, cohort: cohort.to_sym, hobby: hobby}
     end
     puts "List of students was loaded from #{filename}"
     sleep(2)
