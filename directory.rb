@@ -92,6 +92,7 @@ def print_menu
   puts "2. Show the students"
   puts "3. Save the student list to .csv"
   puts "4. Load the student list from a .csv"
+  puts "7. Display school logo"
   puts "8. View my insides"
   puts "9. Exit"
 end
@@ -118,6 +119,9 @@ def process(selection)
     when "4"
       puts "What filename would you like to load? Please type the .csv extenstion as well."
       load_students(STDIN.gets.chomp)
+    when "7"
+      school_logo
+      sleep(3)
     when "8"
       source_code
     when "9"
@@ -190,8 +194,10 @@ def source_code
   puts "----- This is the end of the source code -----".center(50)
   sleep(2)
 end
-  
 
+def school_logo
+  puts File.read("villains_logo.txt")
+end
 # nothing happens until we call the methods
 try_load_students
 interactive_menu
