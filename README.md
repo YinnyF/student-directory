@@ -2,12 +2,23 @@
 
 The student directory script allows you to manage the list of students enrolled at Villains Academy. 
 
+**Languages used**: Ruby
+**External libraries required**: CSV
+
 ## Usage
 
 To run the student directory from the command line:
 ```shell
 ruby directory.rb
 ```
+
+## Files
+
+| File    | Description |
+| ----------- | ----------- |
+| directory.rb  | Script allowing you to manage the list of students      |
+| directory_typos.rb   | Exercise to correct typos in a file  |
+| villains_logo.txt   | ASCII art for fun       |
 
 ## What can it do?
 * It pre-loads a list of students from students.csv (if it exists). 
