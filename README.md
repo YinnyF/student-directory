@@ -1,9 +1,10 @@
 # student-directory
 
-The student directory script allows you to manage the list of students enrolled at Villains Academy from the command line. 
+The student directory script allows you to manage the list of students enrolled at Villains Academy. 
 
-## How to use
+## Usage
 
+To run the student directory from the command line:
 ```shell
 ruby directory.rb
 ```
