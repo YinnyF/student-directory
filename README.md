@@ -12,6 +12,11 @@ To run the student directory from the command line:
 ruby directory.rb
 ```
 
+Instead, to pre-load a specific list of students from a .csv file :
+```shell
+ruby directory.rb 'filename.csv'
+```
+
 ## Files
 
 | File    | Description |
