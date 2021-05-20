@@ -2,8 +2,8 @@
 
 The student directory script allows you to manage the list of students enrolled at Villains Academy. 
 
-**Languages used**: Ruby
-**External libraries required**: CSV
+* **Languages used**: Ruby
+* **External libraries required**: CSV
 
 ## Usage
 
@@ -17,7 +17,7 @@ ruby directory.rb
 | File    | Description |
 | ----------- | ----------- |
 | directory.rb  | Script allowing you to manage the list of students      |
-| directory_typos.rb   | Exercise to correct typos in a file  |
+| directory_typos.rb   | An exercise to correct typos in a file  |
 | villains_logo.txt   | ASCII art for fun       |
 
 ## What can it do?
