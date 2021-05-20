@@ -29,7 +29,7 @@ def input_students
     puts "#{name} will be added to #{cohort} cohort with the hobbies #{hobby}, is this correct? Y/N"
     changes = STDIN.gets.strip.upcase
     # add the student hash to the array
-    @students << {name: name, cohort: cohort, hobby: hobby}
+    push_students(name, cohort, hobby)
     @students.pop if changes == "N" # remove the student from the hash if its not correct
     
     # fix the grammar
@@ -42,6 +42,10 @@ def input_students
     name = STDIN.gets.strip
   end
   # array of students doesnt need to be returned anymore.
+end
+
+def push_students(name, cohort, hobby)
+   @students << {name: name, cohort: cohort.to_sym, hobby: hobby}
 end
 
 def print_header
@@ -167,7 +171,7 @@ def load_students(filename)
     # open the file and generate the hashes using CSV library
     CSV.foreach(filename) do |line|
       name, cohort, hobby = line # parallel assignment to name & cohort - line is an array of elements already separated.
-      @students << {name: name, cohort: cohort.to_sym, hobby: hobby}
+      push_students(name, cohort, hobby)
     end
     puts "List of students was loaded from #{filename}"
     sleep(2)
