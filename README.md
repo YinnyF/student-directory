@@ -29,3 +29,4 @@ ruby directory.rb
 * Load student information from a .csv file.
 * View the source code
 * Display ASCII art in the command line
+* The script uses the sleep method to give the user time to read messages before executing the next command.
